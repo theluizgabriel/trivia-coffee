@@ -45,6 +45,13 @@ export default function Login(props) {
       >
         Play
       </button>
+      <button
+        type="button"
+        data-testid="btn-settings"
+        onClick={ () => history.push('./configuracao') }
+      >
+        Configuração
+      </button>
     </>
   );
 }
