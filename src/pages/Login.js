@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addPlayer } from '../redux/actions/index.action';
 
-export default function Login(props) {
+function Login(props) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const { history } = props;
+  const { history, player } = props;
   const fetchApi = () => (
     fetch('https://opentdb.com/api_token.php?command=request').then((res) => res.json()).catch((error) => error)
   );
@@ -41,7 +43,7 @@ export default function Login(props) {
         type="button"
         data-testid="btn-play"
         disabled={ nome.length === 0 || email.length === 0 }
-        onClick={ handleButtonClick }
+        onClick={ () => { player(nome, email); handleButtonClick(); } }
       >
         Play
       </button>
@@ -55,6 +57,14 @@ export default function Login(props) {
     </>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  player: (nome, email) => dispatch(addPlayer(nome, email)),
+});
+
 Login.propTypes = {
   history: PropTypes.func,
+  player: PropTypes.func,
 }.isRequired;
+
+export default connect(null, mapDispatchToProps)(Login);
