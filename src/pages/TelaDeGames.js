@@ -1,16 +1,21 @@
 // import PropTypes from 'prop-types';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 export default class Games extends React.Component {
   state = {
     questions: [],
     loading: true,
+    redirect: false,
   }
 
   fetchQuestions = (token) => (
     fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
       .then((response) => response.json())
       .then((data) => data.results)
+      .catch(function oi() {
+        this.setState({ redirect: true });
+      })
   );
 
   componentDidMount = async () => {
@@ -24,8 +29,7 @@ export default class Games extends React.Component {
   }
 
   render() {
-    const { questions, loading } = this.state;
-    console.log('render');
+    const { questions, loading, redirect } = this.state;
     return (
       <>
         <h1>RONALDO</h1>
@@ -52,6 +56,7 @@ export default class Games extends React.Component {
             </>
           )
         }
+        {redirect && <Redirect to="/" />}
       </>
     );
   }
