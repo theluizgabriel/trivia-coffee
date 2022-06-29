@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Games extends React.Component {
@@ -7,14 +7,20 @@ export default class Games extends React.Component {
     loading: true,
   }
 
-  fetchQuestions = (token) => (
-    fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
+  fetchQuestions = (token) => {
+    const { history } = this.props;
+    return fetch(`https://opentdb.com/api.php?amount=5&token=${token}`)
       .then((response) => response.json())
-      .then((data) => data.results)
-  );
+      .then((data) => {
+        if (data.results.length === 0) {
+          localStorage.removeItem('token');
+          history.push('/');
+        }
+        return data.results;
+      });
+  };
 
   componentDidMount = async () => {
-    console.log('did');
     const savedToken = localStorage.getItem('token');
     const questions = await this.fetchQuestions(savedToken);
     this.setState({
@@ -25,7 +31,6 @@ export default class Games extends React.Component {
 
   render() {
     const { questions, loading } = this.state;
-    console.log('render');
     return (
       <>
         <h1>RONALDO</h1>
@@ -57,6 +62,6 @@ export default class Games extends React.Component {
   }
 }
 
-// Games.propTypes = {
-//   history: PropTypes.func.isRequired,
-// };
+Games.propTypes = {
+  history: PropTypes.func.isRequired,
+};
