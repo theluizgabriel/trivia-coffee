@@ -60,6 +60,7 @@ export default class Games extends React.Component {
     const { questions, loading, pergunta, resposta } = this.state;
     return (
       <>
+        <Header />
         <h1>RONALDO</h1>
         Trivia
         {
