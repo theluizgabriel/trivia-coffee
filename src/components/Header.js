@@ -6,8 +6,6 @@ import { addScore } from '../redux/actions/index.action';
 
 class Header extends React.Component {
   getImage = (e) => {
-    const { name, email, score } = this.props;
-    console.log(name, email, score);
     const emailUser = md5(e).toString();
     return emailUser;
   };
@@ -23,7 +21,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { name, placar, email } = this.props;
+    const { name, email, score } = this.props;
     return (
       <div>
         <img
@@ -38,7 +36,7 @@ class Header extends React.Component {
         </p>
         <p data-testid="header-score">
           Score:
-          {placar}
+          {score}
         </p>
       </div>
     );
