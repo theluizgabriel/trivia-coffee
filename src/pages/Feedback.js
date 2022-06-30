@@ -34,7 +34,20 @@ function Feedback(props) {
       </h4>
       <h4 data-testid="feedback-total-score">{score}</h4>
       <h4 data-testid="feedback-total-question">{assertions}</h4>
-      <button type="button" data-testid="btn-play-again" onClick={ () => history.push('./login') }>Play Again</button>
+      <button
+        type="button"
+        data-testid="btn-play-again"
+        onClick={ () => history.push('./login') }
+      >
+        Play Again
+
+      </button>
+      <button
+        type="button"
+        data-testid="btn-ranking"
+      >
+        Tela de Ranking
+      </button>
     </>
   );
 }

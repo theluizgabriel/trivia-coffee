@@ -11,6 +11,7 @@ function Ranking(props) {
 
   return (
     <>
+      <h1 data-testid="ranking-title">Ranking</h1>
       <button
         type="button"
         data-testid="btn-go-home"
