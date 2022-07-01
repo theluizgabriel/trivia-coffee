@@ -7,8 +7,8 @@ function Feedback(props) {
   const tres = 3;
   const { scores, assertionss, history } = props;
   const isScorePoints = () => {
-    if (assertionss / 2 < tres) return 'Could be better...';
-    if (assertionss / 2 >= tres) return 'Well Done!';
+    if (assertionss < tres) return 'Could be better...';
+    if (assertionss >= tres) return 'Well Done!';
   };
   return (
     <>

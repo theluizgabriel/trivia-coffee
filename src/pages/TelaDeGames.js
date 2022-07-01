@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import { addScore } from '../redux/actions/index.action';
 
 const NUMBER = 10;
 const TIMER = 1000;
@@ -15,7 +16,6 @@ class Games extends React.Component {
     pergunta: 0,
     resposta: [],
     count: 30,
-    placar: 0,
     toggle: false,
   }
 
@@ -54,39 +54,30 @@ class Games extends React.Component {
   }
 
   changeColor = (e) => {
-    this.setState({ count: 30, toggle: true });
+    this.setState({ toggle: true });
     clearInterval(this.intervalID);
     this.sumScore(e);
   }
 
-  // selectAnswer = () => {
-  //   // clearInterval(this.intervalID);
-  //   // this.setState({ count: 30 });
-  //   // this.intervalID = this.startTimeOut();
-  //   clearInterval(this.intervalID);
-  // }
-
   sumScore = (e) => {
     const { count, questions, pergunta } = this.state;
+    let { score } = this.props;
+    const { placarFunc } = this.props;
     const timer = count;
     const { difficulty } = questions[pergunta];
     if (e.target.id === 'correct-answer') {
       if (difficulty === 'easy') {
-        this.setState((prevState) => ({ placar:
-        prevState.placar + NUMBER + (timer * 1) }));
+        placarFunc(score += NUMBER + (timer * 1));
       } else if (difficulty === 'medium') {
-        this.setState((prevState) => ({ placar:
-        prevState.placar + NUMBER + (timer * 2) }));
+        placarFunc(score += NUMBER + (timer * 2));
       } else if (difficulty === 'hard') {
-        this.setState((prevState) => ({ placar:
-        prevState.placar + NUMBER + (timer * TRES) }));
+        placarFunc(score += NUMBER + (timer * TRES));
       }
     }
   }
 
   positiveOrNegativeNumber = () => {
     const num = Math.floor(Math.random() * 2) - 1;
-    console.log(num === 0 ? 1 : num);
     return num === 0 ? 1 : num;
   };
 
@@ -121,7 +112,6 @@ class Games extends React.Component {
           .sort(() => this.positiveOrNegativeNumber())),
       }));
     });
-    // const respostasAleatorias = { respostas }
   }
 
   componentDidUpdate = () => {
@@ -218,8 +208,14 @@ const mapStateToProps = (state) => ({
   score: state.player.score,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  placarFunc: (placarNovo) => dispatch(addScore(placarNovo)),
+});
+
 Games.propTypes = {
   history: PropTypes.objectOf(PropTypes.any).isRequired,
+  score: PropTypes.number.isRequired,
+  placarFunc: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Games);
+export default connect(mapStateToProps, mapDispatchToProps)(Games);
