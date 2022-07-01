@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 const NUMBER = 10;
@@ -7,7 +8,7 @@ const TIMER = 1000;
 const FOUR = 4;
 const TRES = 3;
 
-export default class Games extends React.Component {
+class Games extends React.Component {
   state = {
     questions: [],
     loading: true,
@@ -68,7 +69,6 @@ export default class Games extends React.Component {
   sumScore = (e) => {
     const { count, questions, pergunta } = this.state;
     const timer = count;
-    console.log(e.target.id);
     const { difficulty } = questions[pergunta];
     if (e.target.id === 'correct-answer') {
       if (difficulty === 'easy') {
@@ -207,6 +207,13 @@ export default class Games extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
 Games.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
 };
+
+export default connect(mapStateToProps)(Games);
