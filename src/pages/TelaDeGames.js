@@ -84,6 +84,12 @@ class Games extends React.Component {
     }
   }
 
+  positiveOrNegativeNumber = () => {
+    const num = Math.floor(Math.random() * 2) - 1;
+    console.log(num === 0 ? 1 : num);
+    return num === 0 ? 1 : num;
+  };
+
   componentDidMount = async () => {
     this.intervalID = this.startTimeOut();
     const savedToken = localStorage.getItem('token');
@@ -112,7 +118,7 @@ class Games extends React.Component {
     }, () => {
       this.setState((prevState) => ({
         resposta: prevState.resposta.map((resp) => resp
-          .sort(() => (Math.random() * NUMBER) - 1)),
+          .sort(() => this.positiveOrNegativeNumber())),
       }));
     });
     // const respostasAleatorias = { respostas }
