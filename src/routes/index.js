@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Configuração from '../pages/Configuracao';
+import Feedback from '../pages/Feedback';
 import Login from '../pages/Login';
 import TeladeGames from '../pages/TelaDeGames';
 import Feedback from '../pages/Feedback';
