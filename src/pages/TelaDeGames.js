@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 
 const NUMBER = 10;
-const TRES = 3;
 const TIMER = 1000;
+const FOUR = 4;
+const TRES = 3;
 
 class Games extends React.Component {
   state = {
@@ -15,6 +16,7 @@ class Games extends React.Component {
     resposta: [],
     count: 30,
     placar: 0,
+    toggle: false,
   }
 
   startTimeOut = () => setInterval(() => {
@@ -37,20 +39,32 @@ class Games extends React.Component {
   };
 
   changeAnswer = () => {
-    this.setState((state) => ({ pergunta: state.pergunta + 1 }));
+    this.setState((state) => ({
+      toggle: false,
+      pergunta: state.pergunta === FOUR ? FOUR : state.pergunta + 1,
+    }));
     this.setState({ count: 30 });
     clearInterval(this.intervalID);
     this.intervalID = this.startTimeOut();
   }
 
-  selectAnswer = (e) => {
-    console.log('oi');
-    // clearInterval(this.intervalID);
-    // this.setState({ count: 30 });
-    // this.intervalID = this.startTimeOut();
+  redirectToFeedback = () => {
+    const { history } = this.props;
+    history.push('/feedback');
+  }
+
+  changeColor = (e) => {
+    this.setState({ count: 30, toggle: true });
     clearInterval(this.intervalID);
     this.sumScore(e);
   }
+
+  // selectAnswer = () => {
+  //   // clearInterval(this.intervalID);
+  //   // this.setState({ count: 30 });
+  //   // this.intervalID = this.startTimeOut();
+  //   clearInterval(this.intervalID);
+  // }
 
   sumScore = (e) => {
     const { count, questions, pergunta } = this.state;
@@ -115,8 +129,25 @@ class Games extends React.Component {
     clearInterval(this.intervalID);
   }
 
+  toggleGreen = () => {
+    const { toggle } = this.state;
+    if (toggle) {
+      return { border: '3px solid rgb(6, 240, 15)', backgroundColor: 'green' };
+    }
+    return { color: 'black' };
+  }
+
+  toggleSalmon = () => {
+    const { toggle } = this.state;
+    if (toggle) {
+      return { border: '3px solid red', backgroundColor: 'salmon',
+      };
+    }
+    return { color: 'black' };
+  }
+
   render() {
-    const { questions, loading, pergunta, resposta, count, placar } = this.state;
+    const { questions, loading, pergunta, resposta, count, toggle, placar } = this.state;
     return (
       <>
         <Header placar={ placar } />
@@ -132,11 +163,12 @@ class Games extends React.Component {
                   resp.answer === questions[pergunta].correct_answer
                     ? (
                       <button
+                        style={ this.toggleGreen() }
                         key={ resp.answer }
                         type="button"
                         data-testid="correct-answer"
                         id="correct-answer"
-                        onClick={ this.selectAnswer }
+                        onClick={ this.changeColor }
                         disabled={ count === 0 }
                       >
                         {resp.answer}
@@ -144,11 +176,12 @@ class Games extends React.Component {
                     )
                     : (
                       <button
+                        style={ this.toggleSalmon() }
                         key={ resp.answer }
                         type="button"
                         data-testid={ `wrong-answer-${resp.id}` }
                         id={ `wrong-answer-${resp.id}` }
-                        onClick={ this.selectAnswer }
+                        onClick={ this.changeColor }
                         disabled={ count === 0 }
                       >
                         {resp.answer}
@@ -158,8 +191,12 @@ class Games extends React.Component {
                 ))}
               </section>
               <button
+                style={ !toggle ? { visibility: 'hidden' } : { color: 'black' } }
+                data-testid={ toggle && 'btn-next' }
                 type="button"
-                onClick={ this.changeAnswer }
+                onClick={
+                  pergunta < FOUR ? this.changeAnswer : this.redirectToFeedback
+                }
               >
                 Próximo
               </button>
