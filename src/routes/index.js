@@ -4,6 +4,7 @@ import Configuração from '../pages/Configuracao';
 import Feedback from '../pages/Feedback';
 import Login from '../pages/Login';
 import TeladeGames from '../pages/TelaDeGames';
+import Feedback from '../pages/Feedback';
 
 export default function Main() {
   return (
