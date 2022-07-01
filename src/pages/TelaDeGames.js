@@ -5,6 +5,7 @@ import Header from '../components/Header';
 const NUMBER = 10;
 const TIMER = 1000;
 const FOUR = 4;
+const TRES = 3;
 
 export default class Games extends React.Component {
   state = {
@@ -12,8 +13,9 @@ export default class Games extends React.Component {
     loading: true,
     pergunta: 0,
     resposta: [],
-    toggle: false,
     count: 30,
+    placar: 0,
+    toggle: false,
   }
 
   startTimeOut = () => setInterval(() => {
@@ -50,9 +52,10 @@ export default class Games extends React.Component {
     history.push('/feedback');
   }
 
-  changeColor = () => {
+  changeColor = (e) => {
     this.setState({ count: 30, toggle: true });
     clearInterval(this.intervalID);
+    this.sumScore(e);
   }
 
   // selectAnswer = () => {
@@ -61,6 +64,25 @@ export default class Games extends React.Component {
   //   // this.intervalID = this.startTimeOut();
   //   clearInterval(this.intervalID);
   // }
+
+  sumScore = (e) => {
+    const { count, questions, pergunta } = this.state;
+    const timer = count;
+    console.log(e.target.id);
+    const { difficulty } = questions[pergunta];
+    if (e.target.id === 'correct-answer') {
+      if (difficulty === 'easy') {
+        this.setState((prevState) => ({ placar:
+        prevState.placar + NUMBER + (timer * 1) }));
+      } else if (difficulty === 'medium') {
+        this.setState((prevState) => ({ placar:
+        prevState.placar + NUMBER + (timer * 2) }));
+      } else if (difficulty === 'hard') {
+        this.setState((prevState) => ({ placar:
+        prevState.placar + NUMBER + (timer * TRES) }));
+      }
+    }
+  }
 
   componentDidMount = async () => {
     this.intervalID = this.startTimeOut();
@@ -125,11 +147,10 @@ export default class Games extends React.Component {
   }
 
   render() {
-    const { questions, loading, pergunta, resposta, count, toggle } = this.state;
+    const { questions, loading, pergunta, resposta, count, toggle, placar } = this.state;
     return (
       <>
-        <Header />
-        <h1>RONALDO</h1>
+        <Header placar={ placar } />
         <h2>{count}</h2>
         Trivia
         {
@@ -146,6 +167,7 @@ export default class Games extends React.Component {
                         key={ resp.answer }
                         type="button"
                         data-testid="correct-answer"
+                        id="correct-answer"
                         onClick={ this.changeColor }
                         disabled={ count === 0 }
                       >
@@ -158,6 +180,7 @@ export default class Games extends React.Component {
                         key={ resp.answer }
                         type="button"
                         data-testid={ `wrong-answer-${resp.id}` }
+                        id={ `wrong-answer-${resp.id}` }
                         onClick={ this.changeColor }
                         disabled={ count === 0 }
                       >
