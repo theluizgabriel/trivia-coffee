@@ -15,7 +15,9 @@ export default function playerReducer(state = INITIAL_STATE, action) {
       gravatarEmail: action.payload.email };
   case 'ADD_SCORE':
     return { ...state,
-      score: action.payload };
+      score: action.payload,
+      assertions: state.assertions + 1,
+    };
 
   default:
     return state;
