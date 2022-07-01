@@ -1,43 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import Header from '../components/Header';
 
 function Feedback(props) {
   const tres = 3;
-  const { score, assertions, history } = props;
+  const { scores, assertionss, history } = props;
   const isScorePoints = () => {
-    if (score < tres) return 'Could be better...';
-    if (score >= tres) return 'Well Done!';
+    if (assertionss / 2 < tres) return 'Could be better...';
+    if (assertionss / 2 >= tres) return 'Well Done!';
   };
   return (
     <>
-      <img
-        data-testid="header-profile-picture"
-        alt="foto perfil"
-        src="*"
-      />
-      <h2
-        data-testid="header-player-name"
-      >
-        Nome pessoa
-
-      </h2>
-      <h4
-        data-testid="header-score"
-      >
-        Placar
-      </h4>
+      <Header placar={ scores } />
       <h4
         data-testid="feedback-text"
       >
-        {isScorePoints}
+        {isScorePoints()}
       </h4>
-      <h4 data-testid="feedback-total-score">{score}</h4>
-      <h4 data-testid="feedback-total-question">{assertions}</h4>
+      <h4 data-testid="feedback-total-score">{scores}</h4>
+      <h4 data-testid="feedback-total-question">{assertionss}</h4>
       <button
         type="button"
         data-testid="btn-play-again"
-        onClick={ () => history.push('./login') }
+        onClick={ () => history.push('./') }
       >
         Play Again
 
@@ -45,6 +31,7 @@ function Feedback(props) {
       <button
         type="button"
         data-testid="btn-ranking"
+        onClick={ () => history.push('./ranking') }
       >
         Tela de Ranking
       </button>
@@ -53,8 +40,9 @@ function Feedback(props) {
 }
 
 const mapStateToProps = (state) => ({
-  score: state.user.score,
-  assertions: state.user.assertions,
+  scores: state.player.score,
+  assertionss: state.player.assertions,
+  names: state.player.name,
 });
 
 Feedback.propTypes = {

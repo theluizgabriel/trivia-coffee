@@ -4,7 +4,7 @@ import Configuração from '../pages/Configuracao';
 import Feedback from '../pages/Feedback';
 import Login from '../pages/Login';
 import TeladeGames from '../pages/TelaDeGames';
-import Feedback from '../pages/Feedback';
+import Ranking from '../pages/Ranking';
 
 export default function Main() {
   return (
@@ -13,6 +13,7 @@ export default function Main() {
       <Route exact path="/teladegames" component={ TeladeGames } />
       <Route exact path="/configuracao" component={ Configuração } />
       <Route exact path="/feedback" component={ Feedback } />
+      <Route exact path="/ranking" component={ Ranking } />
     </Switch>
   );
 }

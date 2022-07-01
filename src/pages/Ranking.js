@@ -7,7 +7,7 @@ function Ranking(props) {
 
   useEffect(() => {
     localStorage.setItem('rankin', dataGravatar);
-  }, []);
+  });
 
   return (
     <>
@@ -15,7 +15,7 @@ function Ranking(props) {
       <button
         type="button"
         data-testid="btn-go-home"
-        onClick={ () => history.push('./login') }
+        onClick={ () => history.push('./') }
       >
         Go Login
 
