@@ -85,6 +85,7 @@ class Games extends React.Component {
     this.intervalID = this.startTimeOut();
     const savedToken = localStorage.getItem('token');
     const questions = await this.fetchQuestions(savedToken);
+    console.log(questions);
     this.setState({
       questions,
       loading: false,
