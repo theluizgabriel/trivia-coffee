@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPlayer } from '../redux/actions/index.action';
+import '../index.css';
 
 function Login(props) {
   const [nome, setNome] = useState('');
@@ -22,39 +23,57 @@ function Login(props) {
     history.push('./teladegames');
   };
   return (
-    <>
-      <input
-        type="text"
-        name="name"
-        placeholder="Nome"
-        value={ nome }
-        data-testid="input-player-name"
-        onChange={ handleChange }
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        data-testid="input-gravatar-email"
-        onChange={ handleChange }
-        value={ email }
-      />
-      <button
-        type="button"
-        data-testid="btn-play"
-        disabled={ nome.length === 0 || email.length === 0 }
-        onClick={ () => { player(nome, email); handleButtonClick(); } }
-      >
-        Play
-      </button>
-      <button
-        type="button"
-        data-testid="btn-settings"
-        onClick={ () => history.push('./configuracao') }
-      >
-        Configuração
-      </button>
-    </>
+    <div
+      className="container"
+    >
+      <main>
+        <form>
+          <h1 className="title">
+            Trivia do 21
+          </h1>
+          <div className="divInputs">
+            <input
+              className="inputs"
+              type="text"
+              name="name"
+              placeholder="Nome"
+              value={ nome }
+              data-testid="input-player-name"
+              onChange={ handleChange }
+            />
+            <input
+              className="inputs"
+              type="email"
+              name="email"
+              placeholder="Email"
+              data-testid="input-gravatar-email"
+              onChange={ handleChange }
+              value={ email }
+            />
+          </div>
+          <div className="divBtn">
+            <button
+              id="btnLogin"
+              className="buttons"
+              type="button"
+              data-testid="btn-play"
+              disabled={ nome.length === 0 || email.length === 0 }
+              onClick={ () => { player(nome, email); handleButtonClick(); } }
+            >
+              Login
+            </button>
+            <button
+              className="buttons"
+              type="button"
+              data-testid="btn-settings"
+              onClick={ () => history.push('./configuracao') }
+            >
+              Configuração
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
   );
 }
 
