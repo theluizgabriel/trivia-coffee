@@ -1,13 +1,9 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { Router } from 'react-router-dom/cjs/react-router-dom.min';
-import { createMemoryHistory } from 'history';
-import Main from '../routes'
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from '../redux/reducers';
+import App from '../App'
+import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux';
 
-const { render, screen } = require('@testing-library/react');
+const {  screen } = require('@testing-library/react');
 
 const response = {
   response_code: 0,
@@ -17,14 +13,8 @@ const response = {
 const pName = 'input-player-name';
 const email = 'input-gravatar-email';
 test('Teste se a página contem um input de loguin, e um de email', () => {
-  const history = createMemoryHistory();
-const store = createStore(rootReducer);
-  render(
-    <Provider store={ store }>
-    <Router history={ history }>
-      <Main />
-    </Router>,
-    </Provider>
+renderWithRouterAndRedux(
+      <App />
   );
 
   const aboutText = screen.getByTestId(pName);
@@ -34,34 +24,20 @@ const store = createStore(rootReducer);
 });
 
 test('Teste se a página contem 2 Botões com a palavra Play, e Configuração', () => {
-  const history = createMemoryHistory();
-  const store = createStore(rootReducer);
-  render(
-    <Provider store={ store }>
-    <Router history={ history }>
-      <Main />
-    </Router>,
-    </Provider>
-  );
-
+  renderWithRouterAndRedux(
+    <App />
+);
   const loginButton = screen.getByRole('button', { name: /play/i });
   expect(loginButton).toBeInTheDocument();
+  expect(loginButton).toBeDisabled()
   const configButton = screen.getByRole('button', { name: /Configuração/i });
   expect(configButton).toBeInTheDocument();
 });
 
 test('Teste se o Botão de Configuração, leva para pagina de Configuração', async () => {
-  const history = createMemoryHistory();
-
-  const store = createStore(rootReducer);
-  render(
-    <Provider store={ store }>
-    <Router history={ history }>
-      <Main />
-    </Router>,
-    </Provider>
-  );
-
+  renderWithRouterAndRedux(
+    <App />
+);
   const configButton = screen.getByRole('button', { name: /Configuração/i });
   userEvent.click(configButton);
 
@@ -69,23 +45,17 @@ test('Teste se o Botão de Configuração, leva para pagina de Configuração', 
   expect(configPage).toBeInTheDocument();
 });
 
-test('Teste se a função fecth para a API é chamada', async () => {
-  const history = createMemoryHistory();
+export default test('Teste se a função fecth para a API é chamada', async () => {
 
   jest.spyOn(global, 'fetch')
     .mockResolvedValue({
       json: jest.fn().mockResolvedValue(response),
     });
 
-    const store = createStore(rootReducer);
-    render(
-      <Provider store={ store }>
-      <Router history={ history }>
-        <Main />
-      </Router>,
-      </Provider>
-    );
-
+    renderWithRouterAndRedux(
+      <App />
+  );
+  
   const aboutText = screen.getByTestId(pName);
   const aboutEmail = screen.getByTestId(email);
   const PlayButton = screen.getByRole('button', { name: /play/i });
