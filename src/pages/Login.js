@@ -26,7 +26,7 @@ function Login(props) {
     <div
       className="container"
     >
-      <main>
+      <main className="main-login">
         <form>
           <img className="logoCafe" src="https://static.vecteezy.com/system/resources/previews/001/209/481/non_2x/coffee-png.png" alt="cafex" />
           <h1 className="title">

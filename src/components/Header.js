@@ -13,16 +13,17 @@ class Header extends React.Component {
     const { name, email, score } = this.props;
     return (
       <div className="headerDiv">
-        <img
-          src={ `https://www.gravatar.com/avatar/${this.getImage(email)}` }
-          alt="Avatar"
-          data-testid="header-profile-picture"
-        />
         <h1
           data-testid="header-player-name"
         >
           {name}
         </h1>
+        <img
+          src={ `https://www.gravatar.com/avatar/${this.getImage(email)}` }
+          alt="Avatar"
+          data-testid="header-profile-picture"
+          className="headerImage"
+        />
         <p data-testid="header-score">
           Pontos:
           { score }

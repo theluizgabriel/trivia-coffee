@@ -89,6 +89,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	width: 100%;  
 	min-height: 100vh;
 	display: flex;
+	display: inline-flexbox;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
@@ -96,7 +97,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	background: #f2f2f2;  
   }
 
-  main {
+  .main-login {
 	width: 390px;
 	background: rgb(219, 214, 225);
 	border-radius: 10px;
@@ -107,22 +108,22 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	align-items: center;
   }
 
-  main img {
-	margin-left: 20%;
+  .main-login img {
+	margin-left: 25%;
   }
 
   .title {
-	margin-left: 28%;
 	font-family: Poppins-Bold;
 	font-size: 30px;
 	color: #333333;
 	line-height: 1.2;
-	text-align: center;
+	margin-left: 10px;
   }
 
   .inputs {
+	margin-bottom: 10px;
 	font-family: Poppins-Regular;
-	font-size: 15px;
+	font-size: 17px;
 	color: #555555;
 	line-height: 1.2;
 	display: block;
@@ -130,6 +131,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	height: 45px;
 	background: transparent;
 	padding: 0 5px;
+	border-bottom: 1px solid #7F7D82;
   }
   
 .buttons {
@@ -161,8 +163,8 @@ textarea:-ms-input-placeholder { color: #adadad;}
   
   .buttons:hover {
 	color: white;
-	box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
-	background-color: rgba(104, 85, 224, 1);
+	box-shadow: 0 0 20px #947453;
+	background-color: #C49A6C;
   }
 
   .divBtn {
@@ -170,7 +172,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	padding-top: 50px;
+	padding-top: 80px;
   }
 
   .divInputs {
@@ -181,58 +183,116 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	margin-top: 30px;
   }
 
+  .inputs::placeholder {
+	color: #333333;
+  }
+
   #btnLogin {
 	margin-bottom: 20px;
   }
 
-  .headerDiv {
-	align-items: center;
-	background-image: linear-gradient(to left, rgba(66, 23, 83, 0), rgb(142, 126, 163));
+  .containerGame {
+	background: #f2f2f2;  
+  }
+
+  .divMain {
+	width: 100%;  
+	min-height: 100vh;
 	display: flex;
-	flex-direction: row;
-  }
-
-  .headerDiv p, h1 {
-	  color: #333333;
-	font-family: Impact;
-	font-size: larger;
-	font-weight: 900;
-	margin-left: 5%;
-	width: 32%;
-  }
-
-.divMain {
-	min-width: 100hv;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 20px;
 }
 
-.divRank {
-	max-width: 40px;
+  .headerDiv {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+  }
 
-}
+  .headerDiv h1 {
+	color: #333333;
+	font-family: Poppins-Bold;
+	font-weight: 1200;
+	margin-bottom: 10px;
+  }
+
+  .headerDiv p {
+	color: #333333;
+	font-family: Poppins;
+	font-size: x-large;
+	font-weight: 1200;
+	margin-bottom: 10px;
+  }
+
+  .headerImage {
+	border-radius: 26px;
+	width: 125px;
+	margin-bottom: 10px;
+	  }
+
+	.hrGame {
+		height: 50vh;
+	}
 
   .gameScreenDiv {
-	  align-items: center;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
   }
 
   .gameScreenDiv h1, h3, h4 {
 	margin: 10px;
   }
+  
+  .circle{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 3px solid #333333;
+	 border-radius: 52px;
+	 width: 100px;
+	 height: 100px;
+ }
 
   .gameCount {
-	color: #331c3d;
-font-size: 50px;
-margin: 30px;
+	display: flex;
+	color: #333333;
+    font-size: 50px;
+  }
+
+  .divGameBtn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   }
 
   .gameBtn {
-	margin-left: 5px;
-	margin-top: 20px;
-	padding: 10px;
+	cursor: pointer;
+	border: 0;
+	border-radius: 4px;
+	font-weight: 600;
+	margin: 10px 10px;
+	width: 500px;
+	padding: 10px 0;
+	box-shadow: 0 0 20px #DBD6E1;
+	transition: 0.1s;
   }
+
+  .game {
+	display: flex;
+	flex-direction: column;
+  }
+
   .footer {
 	bottom: 0;
 	position: absolute;
 	width: 100%;
+  }
+
+  .fundoGame {
+	width: 1000px;
+	background: rgb(219, 214, 225);
+	border-radius: 10px;
+	overflow: auto;
   }
