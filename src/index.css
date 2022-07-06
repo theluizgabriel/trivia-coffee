@@ -114,10 +114,10 @@ textarea:-ms-input-placeholder { color: #adadad;}
 
   .title {
 	font-family: Poppins-Bold;
-	font-size: 30px;
+	text-align: center;
+	width: 100%;
 	color: #333333;
 	line-height: 1.2;
-	margin-left: 10px;
   }
 
   .inputs {
@@ -142,7 +142,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	margin: 0 10px;
 	width: 200px;
 	padding: 10px 0;
-	box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+	box-shadow: 0 0 30px #88858b81;
 	transition: 0.4s;
   }
   
@@ -192,7 +192,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
   }
 
   .containerGame {
-	background: #f2f2f2;  
+	background: #DBD6E1;  
   }
 
   .divMain {
@@ -243,6 +243,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 
   .gameScreenDiv h1, h3, h4 {
 	margin: 10px;
+	color: #2f2e30;
   }
   
   .circle{
@@ -295,4 +296,56 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	background: rgb(219, 214, 225);
 	border-radius: 10px;
 	overflow: auto;
+  }
+
+  .feedback-text {
+	font-size: xx-large;
+	font-family: Poppins;
+	font-weight: bold;
+	margin-bottom: 30px;
+  }
+
+  .total-score-question {
+	font-size: x-large;
+	font-family: Poppins;
+  }
+
+  .mainRanking {
+	width: 100%;  
+	min-height: 100vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	padding: 20px;
+	background-color: #DBD6E1;
+  }
+
+  .divRank {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	width: 100%;
+  }
+
+  .divRank p {
+	color: #333333;
+	font-family: Poppins;
+	font-size: x-large;
+	margin-bottom: 10px;
+  }
+
+
+  .imgRanking {
+	margin: 10%;
+  }
+
+  .organizationRanking {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+
+  .organizationRanking h1 {
+	margin-bottom: 30%;
+	color: #333333;
   }

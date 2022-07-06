@@ -30,7 +30,10 @@ function Login(props) {
         <form>
           <img className="logoCafe" src="https://static.vecteezy.com/system/resources/previews/001/209/481/non_2x/coffee-png.png" alt="cafex" />
           <h1 className="title">
-            Trivia Proibido Café
+            Trivia
+          </h1>
+          <h1 className="title">
+            Obrigatório Café
           </h1>
           <div className="divInputs">
             <input

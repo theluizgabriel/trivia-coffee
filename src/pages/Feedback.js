@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 
 const tres = 3;
 class Feedback extends React.Component {
   isScorePoints = () => {
     const { assertionss } = this.props;
-    if (assertionss < tres) return 'Could be better...';
-    if (assertionss >= tres) return 'Well Done!';
+    if (assertionss < tres) return 'Você não tomou café 🙄';
+    if (assertionss >= tres) return 'Você tomou café ☕😁';
   };
 
   getImage = (e) => {
@@ -36,18 +35,32 @@ class Feedback extends React.Component {
   render() {
     const { score, assertionss, history } = this.props;
     return (
+      <div className="containerGame">
       <div className="divMain">
         <Header />
+        <hr className="hrGame"></hr>
         <div className="gameScreenDiv">
           <h4
+            className="feedback-text"
             data-testid="feedback-text"
           >
             {this.isScorePoints()}
           </h4>
-          <h4 data-testid="feedback-total-score">{score}</h4>
-          <h4 data-testid="feedback-total-question">{assertionss}</h4>
+          <h4
+          data-testid="feedback-total-score"
+          className="total-score-question"
+          >
+            Pontos: {score}
+            </h4>
+          <h4
+          data-testid="feedback-total-question"
+          className="total-score-question"
+          >
+            Acertou {assertionss} questões
+            </h4>
+          <div className="divBtn">
           <button
-            className="gameBtn"
+            className="buttons"
             type="button"
             data-testid="btn-play-again"
             onClick={ () => {
@@ -55,11 +68,11 @@ class Feedback extends React.Component {
               this.saveInfos();
             } }
           >
-            Play Again
+            Jogar novamente
 
           </button>
           <button
-            className="gameBtn"
+            className="buttons"
             type="button"
             data-testid="btn-ranking"
             onClick={ () => {
@@ -67,10 +80,11 @@ class Feedback extends React.Component {
               this.saveInfos();
             } }
           >
-            Tela de Ranking
+            Ranking
           </button>
+          </div>
         </div>
-        <Footer />
+      </div>
       </div>
     );
   }
