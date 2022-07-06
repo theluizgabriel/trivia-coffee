@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const tres = 3;
 class Feedback extends React.Component {
@@ -35,37 +36,42 @@ class Feedback extends React.Component {
   render() {
     const { score, assertionss, history } = this.props;
     return (
-      <>
+      <div className="divMain">
         <Header />
-        <h4
-          data-testid="feedback-text"
-        >
-          {this.isScorePoints()}
-        </h4>
-        <h4 data-testid="feedback-total-score">{score}</h4>
-        <h4 data-testid="feedback-total-question">{assertionss}</h4>
-        <button
-          type="button"
-          data-testid="btn-play-again"
-          onClick={ () => {
-            history.push('./');
-            this.saveInfos();
-          } }
-        >
-          Play Again
+        <div className="gameScreenDiv">
+          <h4
+            data-testid="feedback-text"
+          >
+            {this.isScorePoints()}
+          </h4>
+          <h4 data-testid="feedback-total-score">{score}</h4>
+          <h4 data-testid="feedback-total-question">{assertionss}</h4>
+          <button
+            className="gameBtn"
+            type="button"
+            data-testid="btn-play-again"
+            onClick={ () => {
+              history.push('./');
+              this.saveInfos();
+            } }
+          >
+            Play Again
 
-        </button>
-        <button
-          type="button"
-          data-testid="btn-ranking"
-          onClick={ () => {
-            history.push('./ranking');
-            this.saveInfos();
-          } }
-        >
-          Tela de Ranking
-        </button>
-      </>
+          </button>
+          <button
+            className="gameBtn"
+            type="button"
+            data-testid="btn-ranking"
+            onClick={ () => {
+              history.push('./ranking');
+              this.saveInfos();
+            } }
+          >
+            Tela de Ranking
+          </button>
+        </div>
+        <Footer />
+      </div>
     );
   }
 }

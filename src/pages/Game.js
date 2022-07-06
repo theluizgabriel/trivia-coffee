@@ -147,7 +147,7 @@ class Games extends React.Component {
   render() {
     const { questions, loading, pergunta, resposta, count, toggle, placar } = this.state;
     return (
-      <div className="gameMain">
+      <div className="divMain">
         <Header placar={ placar } />
         <div className="gameScreenDiv">
           <h2 className="gameCount">{count}</h2>
@@ -206,7 +206,7 @@ class Games extends React.Component {
             )
           }
         </div>
-          <Footer />
+        <Footer />
       </div>
     );
   }

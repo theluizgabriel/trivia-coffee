@@ -201,8 +201,13 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	width: 32%;
   }
 
-.gameMain {
+.divMain {
 	min-width: 100hv;
+}
+
+.divRank {
+	max-width: 40px;
+
 }
 
   .gameScreenDiv {
@@ -211,7 +216,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	flex-direction: column;
   }
 
-  .gameScreenDiv h1, h3 {
+  .gameScreenDiv h1, h3, h4 {
 	margin: 10px;
   }
 
