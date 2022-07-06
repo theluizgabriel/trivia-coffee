@@ -28,8 +28,9 @@ function Login(props) {
     >
       <main>
         <form>
+          <img className="logoCafe" src="https://static.vecteezy.com/system/resources/previews/001/209/481/non_2x/coffee-png.png" alt="cafex" />
           <h1 className="title">
-            Trivia do 21
+            Trivia Proibido Café
           </h1>
           <div className="divInputs">
             <input

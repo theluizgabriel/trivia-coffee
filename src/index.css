@@ -98,7 +98,7 @@ textarea:-ms-input-placeholder { color: #adadad;}
 
   main {
 	width: 390px;
-	background: #fff;
+	background: rgb(219, 214, 225);
 	border-radius: 10px;
 	overflow: hidden;
 	padding: 77px 55px 33px 55px;
@@ -107,8 +107,12 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	align-items: center;
   }
 
+  main img {
+	margin-left: 20%;
+  }
+
   .title {
-	display: block;
+	margin-left: 28%;
 	font-family: Poppins-Bold;
 	font-size: 30px;
 	color: #333333;
@@ -144,6 +148,10 @@ textarea:-ms-input-placeholder { color: #adadad;}
 	color: white;
 	background-color: rgba(104, 85, 224, 1);
   }
+
+  .logoCafe {
+	max-height: 80px;
+  }
   
   .log {
 	color: rgb(104, 85, 224);
@@ -175,4 +183,51 @@ textarea:-ms-input-placeholder { color: #adadad;}
 
   #btnLogin {
 	margin-bottom: 20px;
+  }
+
+  .headerDiv {
+	align-items: center;
+	background-image: linear-gradient(to left, rgba(66, 23, 83, 0), rgb(142, 126, 163));
+	display: flex;
+	flex-direction: row;
+  }
+
+  .headerDiv p, h1 {
+	  color: #333333;
+	font-family: Impact;
+	font-size: larger;
+	font-weight: 900;
+	margin-left: 5%;
+	width: 32%;
+  }
+
+.gameMain {
+	min-width: 100hv;
+}
+
+  .gameScreenDiv {
+	  align-items: center;
+	display: flex;
+	flex-direction: column;
+  }
+
+  .gameScreenDiv h1, h3 {
+	margin: 10px;
+  }
+
+  .gameCount {
+	color: #331c3d;
+font-size: 50px;
+margin: 30px;
+  }
+
+  .gameBtn {
+	margin-left: 5px;
+	margin-top: 20px;
+	padding: 10px;
+  }
+  .footer {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
   }

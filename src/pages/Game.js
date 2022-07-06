@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { addScore } from '../redux/actions/index.action';
 
@@ -146,61 +147,67 @@ class Games extends React.Component {
   render() {
     const { questions, loading, pergunta, resposta, count, toggle, placar } = this.state;
     return (
-      <>
+      <div className="gameMain">
         <Header placar={ placar } />
-        <h2>{count}</h2>
-        Trivia
-        {
-          loading ? <h2>Carregando...</h2> : (
-            <>
-              <p data-testid="question-category">{questions[pergunta].category}</p>
-              <h3 data-testid="question-text">{questions[pergunta].question}</h3>
-              <section data-testid="answer-options">
-                {resposta[pergunta].map((resp) => (
-                  resp.answer === questions[pergunta].correct_answer
-                    ? (
-                      <button
-                        style={ this.toggleGreen() }
-                        key={ resp.answer }
-                        type="button"
-                        data-testid="correct-answer"
-                        id="correct-answer"
-                        onClick={ this.changeColor }
-                        disabled={ count === 0 }
-                      >
-                        {resp.answer}
-                      </button>
-                    )
-                    : (
-                      <button
-                        style={ this.toggleSalmon() }
-                        key={ resp.answer }
-                        type="button"
-                        data-testid={ `wrong-answer-${resp.id}` }
-                        id={ `wrong-answer-${resp.id}` }
-                        onClick={ this.changeColor }
-                        disabled={ count === 0 }
-                      >
-                        {resp.answer}
-                      </button>
-                    )
+        <div className="gameScreenDiv">
+          <h2 className="gameCount">{count}</h2>
+          <h3>Trivia</h3>
+          {
+            loading ? <h2>Carregando...</h2> : (
+              <>
+                <p data-testid="question-category">{questions[pergunta].category}</p>
+                <h3 data-testid="question-text">{questions[pergunta].question}</h3>
+                <section data-testid="answer-options">
+                  {resposta[pergunta].map((resp) => (
+                    resp.answer === questions[pergunta].correct_answer
+                      ? (
+                        <button
+                          className="gameBtn"
+                          style={ this.toggleGreen() }
+                          key={ resp.answer }
+                          type="button"
+                          data-testid="correct-answer"
+                          id="correct-answer"
+                          onClick={ this.changeColor }
+                          disabled={ count === 0 }
+                        >
+                          {resp.answer}
+                        </button>
+                      )
+                      : (
+                        <button
+                          className="gameBtn"
+                          style={ this.toggleSalmon() }
+                          key={ resp.answer }
+                          type="button"
+                          data-testid={ `wrong-answer-${resp.id}` }
+                          id={ `wrong-answer-${resp.id}` }
+                          onClick={ this.changeColor }
+                          disabled={ count === 0 }
+                        >
+                          {resp.answer}
+                        </button>
+                      )
 
-                ))}
-              </section>
-              <button
-                style={ !toggle ? { visibility: 'hidden' } : { color: 'black' } }
-                data-testid={ toggle && 'btn-next' }
-                type="button"
-                onClick={
-                  pergunta < FOUR ? this.changeAnswer : this.redirectToFeedback
-                }
-              >
-                Próximo
-              </button>
-            </>
-          )
-        }
-      </>
+                  ))}
+                </section>
+                <button
+                  className="gameBtn"
+                  style={ !toggle ? { visibility: 'hidden' } : { color: 'black' } }
+                  data-testid={ toggle && 'btn-next' }
+                  type="button"
+                  onClick={
+                    pergunta < FOUR ? this.changeAnswer : this.redirectToFeedback
+                  }
+                >
+                  Próximo
+                </button>
+              </>
+            )
+          }
+        </div>
+          <Footer />
+      </div>
     );
   }
 }
