@@ -66,14 +66,6 @@ function Login(props) {
             >
               Login
             </button>
-            <button
-              className="buttons"
-              type="button"
-              data-testid="btn-settings"
-              onClick={ () => history.push('./configuracao') }
-            >
-              Configuração
-            </button>
           </div>
         </form>
       </main>
